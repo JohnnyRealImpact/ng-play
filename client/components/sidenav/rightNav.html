@@ -1,0 +1,20 @@
+<md-toolbar class="md-theme-light md-toolbar-tools" layout="columns">
+  <span class="">
+    <md-icon md-svg-icon="assets/icons/search.svg"></md-icon>
+  </span>
+  <h1 class="md-toolbar-tools" flex>
+    Find Content
+  </h1>
+  <span>
+      <md-icon md-svg-icon="assets/icons/close.svg" ng-click="$emit('toggle', { name: 'right', state: false});"></md-icon>
+  </span>
+</md-toolbar>
+<md-content ng-controller="RightCtrl" layout-padding>
+  <form>
+    <md-input-container>
+      <label for="testInput">Enter Search Criteria</label>
+      <input type="text" id="testInput"
+             ng-model="data" md-autofocus>
+    </md-input-container>
+  </form>
+</md-content>

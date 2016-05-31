@@ -1,0 +1,15 @@
+<div ng-controller="AppCtrl" layout="column" flex ng-cloak>
+  <section layout="row" flex>
+    <md-sidenav class="md-sidenav-left md-whiteframe-z2"
+                md-component-id="left-static"
+                md-is-locked-open="!isMobile() && isLeftOpen('left-static')">
+      <div ui-view="left"></div>
+    </md-sidenav>
+    <md-content flex layout-padding>
+      <div layout="column" layout-fill layout-align="top center" ui-view="main" flex></div>
+    </md-content>
+    <md-sidenav class="md-sidenav-right md-whiteframe-z2" md-component-id="right">
+      <div ng-include="'components/sidenav/rightNav.html'"></div>
+    </md-sidenav>
+  </section>
+</div>

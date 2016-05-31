@@ -1,0 +1,46 @@
+<md-content layout-padding style="width: 100%">
+  <form name="cmdForm">
+    <div layout-gt-sm="row">
+      <md-input-container style="margin-bottom: 6px;" flex>
+        <label>{{ getDescription() }}</label>
+        <input name="input" autofocus
+               ng-model="input"
+               xxng-disabled="isBusy"
+               cmd-enter="execCommand(input)">
+      </md-input-container>
+    </div>
+    <div class="">
+      <div ng-repeat="item in output | orderBy:'-'"
+           style="margin-bottom: 6px; color: {{ item.ended ? 'black' : 'silver' }}">
+        <div layout="row"
+             style="border-bottom: dotted #EFEFEF 1px; border-top: dotted #EFEFEF 1px;">
+
+          <a href=""
+             ng-click="item.expanded = !item.expanded"
+             style="color: dark-gray; vertical-align: top; margin-right: 3px">
+            <i ng-if = "item.ended && item.error"
+               class="fa fa-exclamation-circle"
+               style="color:red;"></i>
+            <i ng-if = "item.ended && !item.error && item.stderr"
+               class="fa fa-exclamation-triangle"
+               style="color:orange;"></i>
+            <i ng-if = "item.ended && !item.error && !item.stderr"
+               class="fa fa-check"
+               style="color: limegreen;"></i>
+            <i ng-if = "!item.ended"
+               class="fa fa-hourglass-o"
+               style="color: darkgrey;"></i>
+          </a>
+
+          <pre style="margin: 2px; font-weight: bold" flex>{{ item.input }}</pre>
+          <pre style="margin: 2px; color: silver" ng-if="item.ended">({{ item.ended | fromNow }})</pre>
+          <pre style="margin: 2px; color: silver;">{{ item.created | date:'HH:mm:ss' }}</pre>
+        </div>
+        <div ng-show="item.expanded || ($first && item.expanded === undefined)">
+          <pre ng-if="item.stderr" style="margin: 2px 8px; color: red;">{{ item.stderr }}</pre>
+          <pre ng-if="item.stdout" style="margin: 2px 8px; color: gray;">{{ item.stdout }}</pre>
+        </div>
+      </div>
+    </div>
+  </form>
+</md-content>

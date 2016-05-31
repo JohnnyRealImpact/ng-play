@@ -1,0 +1,85 @@
+<div ng-controller="ShellCtrl" class="main-shell">
+
+  <md-sidenav ng-if="isMobile()" class="md-sidenav-left md-whiteframe-z2" md-component-id="left">
+    <md-toolbar class="md-theme-light">
+      <div class="md-toolbar-tools">
+        <md-button class="md-icon-button" aria-label="Left Navigation"
+                   ng-click="$emit('toggle', { name: 'left' });">
+          <md-icon md-svg-icon="assets/icons/menu.svg"></md-icon>
+        </md-button>
+        <h2 class="md-toolbar-tools">Mobile Side Navigation</h2>
+      </div>
+    </md-toolbar>
+    <div ng-include="'components/sidenav/leftNav.html'"></div>
+  </md-sidenav>
+
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <md-button class="md-icon-button" aria-label="Left Navigation"
+                 ng-click="$emit('toggle', { name: 'left-static' });"
+                 ng-if="!isMobile()">
+        <md-icon md-svg-icon="assets/icons/keyboard_arrow_left_white.svg" ng-if="isLeftOpen('left-static')"></md-icon>
+        <md-icon md-svg-icon="assets/icons/keyboard_arrow_right_white.svg" ng-if="!isLeftOpen('left-static')"></md-icon>
+      </md-button>
+      <md-button class="md-icon-button" aria-label="Left Navigation"
+                 ng-click="$emit('toggle', { name: 'left' });"
+                 ng-if="isMobile()">
+        <md-icon md-svg-icon="assets/icons/menu.svg"></md-icon>
+      </md-button>
+      <h2>
+          <a ui-sref="app.home">ng-play</a>
+        </h2>
+      <span flex=""></span>
+      <span hide show-gt-md>
+        <md-button ui-sref="app.cmd" aria-label="CLI" class="md-icon-button">
+          <md-icon md-svg-icon="assets/icons/cli.svg"></md-icon>
+        </md-button>
+      </span>
+      <span>
+        <md-button aria-label="Search" class="md-icon-button"
+                   ng-click="$emit('toggle', { name: 'right', state: true});"
+                   ng-hide="isOpenRight()">
+          <md-icon md-svg-icon="assets/icons/search.svg"></md-icon>
+        </md-button>
+      </span>
+      <md-menu>
+        <md-button aria-label="Open phone interactions menu" class="md-icon-button" ng-click="openMenu($mdOpenMenu, $event)">
+          <md-icon md-menu-origin md-svg-icon="assets/icons/dots-vertical.svg"></md-icon>
+        </md-button>
+        <md-menu-content width="4">
+          <md-menu-item>
+            <md-button ng-click="showAddDialog($event)">
+              <md-icon md-svg-icon="content:add" md-menu-align-target></md-icon>
+              Add
+            </md-button>
+          </md-menu-item>
+          <md-menu-item>
+            <md-button ng-click="redial($event)">
+              <md-icon md-svg-icon="communication:dialpad" md-menu-align-target></md-icon>
+              Redial
+            </md-button>
+          </md-menu-item>
+          <md-menu-item>
+            <md-button disabled="disabled" ng-click="checkVoicemail()">
+              <md-icon md-svg-icon="communication:voicemail"></md-icon>
+              Check voicemail
+            </md-button>
+          </md-menu-item>
+          <md-menu-item>
+            <md-button ng-click="toggleNotifications()">
+              <md-icon md-svg-icon="social:notifications{{notificationsEnabled ? '_off' : ''}}"></md-icon>
+              {{notificationsEnabled ? 'Disable' : 'Enable' }} notifications
+            </md-button>
+          </md-menu-item>
+          <md-menu-item>
+            <md-button ng-click="toggleNotifications()">
+              <md-icon md-svg-icon="social:notifications{{notificationsEnabled ? '_off' : ''}}"></md-icon>
+              Open Terminal
+            </md-button>
+          </md-menu-item>
+
+        </md-menu-content>
+      </md-menu>
+    </div>
+  </md-toolbar>
+</div>
