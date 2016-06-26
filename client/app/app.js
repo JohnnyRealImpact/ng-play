@@ -9,7 +9,8 @@ angular.module('ngPlayApp', [
   'ui.router',
   'ngMaterial',
   'ngMoment',
-  'ngPlayApp.cli'
+  'ngPlayApp.cli',
+  'ngPlayApp.info',
   ])
   .config(function($mdIconProvider) {
     $mdIconProvider

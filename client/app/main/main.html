@@ -3,10 +3,12 @@
                 md-row-height-gt-md="1:1" md-row-height="4:3"
                 md-gutter="8px" md-gutter-gt-sm="4px">
     <md-grid-tile
+      ng-click="select(thing)"
       ng-repeat="thing in awesomeThings"
       ng-class="getColor($index)" md-rowspan="{{getSpan($index)}}"
       md-colspan="{{ getSpan($index) }}"
-      md-colspan-sm="1">
+      md-colspan-sm="1"
+      style="cursor:pointer">
       <md-icon class="avatar-icon" md-svg-icon="{{thing.icon || 'hardware:computer'}}"></md-icon>
       <md-grid-tile-footer>
         <div layout="row">

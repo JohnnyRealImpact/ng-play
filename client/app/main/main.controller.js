@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('ngPlayApp')
-  .controller('MainCtrl', function ($rootScope, $scope, $http, cliProxy, appRuntime) {
+  .controller('MainCtrl', function ($rootScope, $scope, $http, $state, cliProxy, appRuntime) {
 
     //$scope.appRuntime = appRuntime;
     $scope.awesomeThings = appRuntime.getAwesomeThings();
@@ -29,5 +29,10 @@ angular.module('ngPlayApp')
         return _d.featured ? 2 : 1;
       }
     };
+
+    $scope.select = function (item) {
+      console.info(' - Select:', item);
+      $state.go('app.info', item);
+    }
 
   });
