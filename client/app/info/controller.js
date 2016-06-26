@@ -9,7 +9,7 @@ angular.module('ngPlayApp.info', [
     $stateProvider.state('app.info', {
       url: '/info',
       views: {
-        'left@': { templateUrl: 'app/info/left.html' },
+        'left@': {templateUrl: 'app/info/left.html'},
         'main@': {
           templateUrl: 'app/info/main.html',
           controller: 'itemViewController'
@@ -29,4 +29,22 @@ angular.module('ngPlayApp.info', [
 
     console.log('Thing Selection...', $state.current.params);
 
-  }]);
+    $scope.info = {
+      name: 'Remote Host',
+      desc: 'Targets a selected remote host.',
+      url: 'https://localhost',
+      active: true,
+      featured: false,
+    };
+
+  }])
+
+  .controller('ItemViewCtrl', function ($scope) {
+
+  })
+  .config(function($mdThemingProvider) {
+    // Configure a dark theme with primary foreground yellow
+    $mdThemingProvider.theme('docs-dark', 'default')
+      .primaryPalette('yellow')
+      .dark();
+  })

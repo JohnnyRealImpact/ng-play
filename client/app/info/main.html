@@ -1,46 +1,48 @@
-<md-content layout-padding style="width: 100%">
-  <form name="cmdForm">
-    <div layout-gt-sm="row">
-      <md-input-container style="margin-bottom: 6px;" flex>
-        <label>{{ getDescription() }}</label>
-        <input name="input" autofocus
-               ng-model="input"
-               xxng-disabled="isBusy"
-               cmd-enter="execCommand(input)">
-      </md-input-container>
-    </div>
-    <div class="">
-      <div ng-repeat="item in output | orderBy:'-'"
-           style="margin-bottom: 6px; color: {{ item.ended ? 'black' : 'silver' }}">
-        <div layout="row"
-             style="border-bottom: dotted #EFEFEF 1px; border-top: dotted #EFEFEF 1px;">
-
-          <a href=""
-             ng-click="item.expanded = !item.expanded"
-             style="color: dark-gray; vertical-align: top; margin-right: 3px">
-            <i ng-if = "item.ended && item.error"
-               class="fa fa-exclamation-circle"
-               style="color:red;"></i>
-            <i ng-if = "item.ended && !item.error && item.stderr"
-               class="fa fa-exclamation-triangle"
-               style="color:orange;"></i>
-            <i ng-if = "item.ended && !item.error && !item.stderr"
-               class="fa fa-check"
-               style="color: limegreen;"></i>
-            <i ng-if = "!item.ended"
-               class="fa fa-hourglass-o"
-               style="color: darkgrey;"></i>
-          </a>
-
-          <pre style="margin: 2px; font-weight: bold" flex>{{ item.input }}</pre>
-          <pre style="margin: 2px; color: silver" ng-if="item.ended">({{ item.ended | fromNow }})</pre>
-          <pre style="margin: 2px; color: silver;">{{ item.created | date:'HH:mm:ss' }}</pre>
+<md-content layout="row" flex layout-padding style="width: 100%">
+  <div ng-if="info" layout="column" flex>
+    <div ng-controller="ItemViewCtrl" layout="column" ng-cloak class="md-inline-form">
+      <md-content md-theme="docs-dark" layout="row" layout-gt-sm="row" layout-padding>
+        <div layout="column" style="min-width: 128px; vertical-align: top; display: table-cell; text-align: center;">
+          <md-icon class="avatar-icon" md-svg-icon="{{thing.icon || 'hardware:computer'}}" style="width: 100px; height: 100px;"></md-icon>
         </div>
-        <div ng-show="item.expanded || ($first && item.expanded === undefined)">
-          <pre ng-if="item.stderr" style="margin: 2px 8px; color: red;">{{ item.stderr }}</pre>
-          <pre ng-if="item.stdout" style="margin: 2px 8px; color: gray;">{{ item.stdout }}</pre>
+        <div layout="column" flex>
+          <md-input-group layout="row">
+            <md-input-container>
+              <label>Title</label>
+              <input ng-model="info.name">
+            </md-input-container>
+            <md-input-container flex>
+              <label>External Link URL</label>
+              <input ng-model="info.url">
+            </md-input-container>
+          </md-input-group>
+          <div class="md-caption md-accent" style="color: gray; margin-top: -28px; z-index: 100">
+            &rarr;
+            <a href="" style="color: white">Overview</a> |
+            <a href="" ng-click="advanced=!advanced" style="color: white; text-decoration: none;">Advanced</a> |
+            <a style="color: gray" disabled>Hardware</a> |
+            <a style="color: gray" disabled>Software</a> |
+            <a style="color: gray" disabled>Releases</a>
+          </div>
+          <md-input-group layout="column" ng-if="advanced">
+            <h3 layout="row" class="md-headline" flex-gt-xs>Advanced Options</h3>
+            <md-input-container layout="row" flex-gt-xs>
+              <label>Description</label>
+              <input ng-model="info.desc">
+            </md-input-container>
+            <md-input-container layout="row">
+              <md-switch ng-model="info.enabled">Enabled</md-switch>
+              <md-switch ng-model="info.featured">Featured</md-switch>
+            </md-input-container>
+          </md-input-group>
         </div>
-      </div>
+      </md-content>
+      <md-content layout-padding>
+        <div>
+          ...
+        </div>
+      </md-content>
     </div>
-  </form>
+
+  </div>
 </md-content>

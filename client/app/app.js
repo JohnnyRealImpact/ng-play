@@ -34,7 +34,7 @@ angular.module('ngPlayApp', [
   })
   .config(function($mdThemingProvider) {
     $mdThemingProvider.theme('default')
-      .primaryPalette('blue-grey', {
+      .primaryPalette('grey', {
         'default': '900',
         'hue-1': '900',
         'hue-2': '600',
