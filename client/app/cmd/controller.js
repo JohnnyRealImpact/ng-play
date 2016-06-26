@@ -11,7 +11,7 @@ angular.module('ngPlayApp.cli', [
       views: {
         'left@': {templateUrl: 'components/sidenav/leftNav.html'},
         'main@': {
-          templateUrl: 'app/cmd/cmd.html',
+          templateUrl: 'app/cmd/main.html',
           controller: 'systemCmdViewController'
         },
       }

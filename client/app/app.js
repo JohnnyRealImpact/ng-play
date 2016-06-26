@@ -292,9 +292,9 @@ angular.module('ngPlayApp', [
       //.finally($rootScope.$applyAsync);
 
     // Hacky way to set initial state
-    if ($state && $state.current && !$state.current.name) {
-      $timeout(function () {
-        $state.go('app.home');
-      }, 0)
-    }
+    //if ($state && $state.current && !$state.current.name) {
+    //  $timeout(function () {
+    //    $state.go('app.home');
+    //  }, 0)
+    //}
   });
