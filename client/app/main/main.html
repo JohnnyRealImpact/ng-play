@@ -7,14 +7,18 @@
       ng-class="getColor($index)" md-rowspan="{{getSpan($index)}}"
       md-colspan="{{ getSpan($index) }}"
       md-colspan-sm="1">
-
-      <md-icon class="avatar-icon" md-svg-icon="hardware:computer"></md-icon>
+      <md-icon class="avatar-icon" md-svg-icon="{{thing.icon || 'hardware:computer'}}"></md-icon>
       <md-grid-tile-footer>
-        <h3>
-        <a href="#" ng-click="alert('lala')" style="color: white">
-          {{thing.name}}
-        </a>
-        </h3>
+        <div layout="row">
+          <h3 layout="column" flex>
+            {{thing.name}}
+          </h3>
+          <span layout="column" style="padding: 0 6px">
+            <a ng-if="thing.url" href="{{thing.url}}" target="_blank" style="color: white">
+              <md-icon md-svg-icon="assets/icons/open_new.svg"></md-icon>
+            </a>
+          </span>
+        </div>
       </md-grid-tile-footer>
     </md-grid-tile>
   </md-grid-list>
