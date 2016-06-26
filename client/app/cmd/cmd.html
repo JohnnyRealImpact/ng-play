@@ -1,5 +1,5 @@
-<md-content layout-padding style="width: 100%">
-  <form name="cmdForm">
+<md-content md-theme="docs-dark" layout-gt-sm="row" layout-padding flex style="width: 100%">
+  <form name="cmdForm" layout-gt-sm="column" style="width: 100%;">
     <div layout-gt-sm="row">
       <md-input-container style="margin-bottom: 6px;" flex>
         <label>{{ getDescription() }}</label>
@@ -11,9 +11,9 @@
     </div>
     <div class="">
       <div ng-repeat="item in output | orderBy:'-'"
-           style="margin-bottom: 6px; color: {{ item.ended ? 'black' : 'silver' }}">
+           style="margin-bottom: 6px; color: {{ item.ended ? 'white' : 'silver' }}">
         <div layout="row"
-             style="border-bottom: dotted #EFEFEF 1px; border-top: dotted #EFEFEF 1px;">
+             style="border-top: dotted rgba(128, 128, 128, 0.5) 1px; padding-top: 6px">
 
           <a href=""
              ng-click="item.expanded = !item.expanded"
