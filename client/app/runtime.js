@@ -3,21 +3,10 @@
  */
 
 angular.module('ngPlayApp.runtime', [
+  'ngPlayApp.config',
   'ngPlayApp.cli',
   'ngPlayApp.info',
 ])
-
-  // Config definitions
-  .constant('appConfig', {
-    api: {
-      things: '/api/things',
-    },
-    cmd: {
-      discoverIp: 'dig +short myip.opendns.com @resolver1.opendns.com',
-      dockerMachineVer: 'docker-machine -v | sed -e "s/docker-machine version //g" | sed -e "s/, build .*$//g" | sed -e "s/ //g"',
-      dockerMachineList: 'printf "[ " && docker-machine ls --format="{ \\\"name\\\": \\\"{{.Name}}\\\", \\\"state\\\": \\\"{{.State}}\\\", \\\"driver\\\": \\\"{{.DriverName}}\\\", \\\"url\\\": \\\"{{.URL}}\\\" }," && printf " null ]\n" | sed -e "s/\\},\\s*\\]/zzzz/g"',
-    }
-  })
 
   // Define the application runtime service
   .service('appRuntime', ['appConfig', 'cliProxy', '$http', '$q', function (config, cliProxy, $http, $q) {
@@ -76,10 +65,13 @@ angular.module('ngPlayApp.runtime', [
             localTile.info = 'An error occurred while looking for docker-machine';
             console.error(resp.stderr);
           } else if (resp.stdout) {
-            var newUrl = 'https://' + resp.stdout.trim();
-            localTile.name = newUrl;
+            var newHost = resp.stdout.trim();
+            var newUrl = 'https://' + newHost;
+            localTile.name = newHost;
             localTile.url = newUrl;
             localTile.active = true;
+
+            config.title = newHost;
           }
           return {
             status: true,
@@ -183,8 +175,13 @@ angular.module('ngPlayApp.runtime', [
     };
   }])
 
+  // Set the page configuration
+  .run(function($rootScope, appConfig){
+    $rootScope.pageInfo = appConfig.page;
+  })
+
   // Bootstrap the application runtime...
-  .run(function ($state, $timeout, appRuntime) {
+  .run(function (appRuntime) {
 
     // Bootstrap the application runtime
     console.groupCollapsed('Starting application...');
@@ -232,6 +229,7 @@ angular.module('ngPlayApp.runtime', [
             icon: 'content:add',
             name: 'Create New',
             info: 'Define a new docker-machine environment.',
+            state: 'app.new',
             active: false,
           }
         )

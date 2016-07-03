@@ -11,3 +11,10 @@ angular.module('ngPlayApp.vendor', [
   'ngMaterial',
   'ngMoment',
 ])
+
+  // Moment as a filter
+  .filter('fromNow', function () {
+    return function (dateString, format) {
+      return moment(dateString).fromNow(format);
+    };
+  });

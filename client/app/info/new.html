@@ -1,0 +1,48 @@
+<md-content layout="row" flex layout-padding style="width: 100%">
+  <div layout="column" flex>
+    <div ng-controller="ItemViewCtrl" layout="column" ng-cloak class="md-inline-form">
+      <md-content md-theme="docs-dark" layout="row" layout-gt-sm="row" layout-padding>
+        <div layout="column" style="min-width: 128px; vertical-align: top; display: table-cell; text-align: center;">
+          <md-icon class="avatar-icon" md-svg-icon="{{thing.icon || 'hardware:computer'}}" style="width: 100px; height: 100px;"></md-icon>
+        </div>
+        <div layout="column" flex>
+          <md-input-group layout="row">
+            <md-input-container>
+              <label>New Title</label>
+              <input ng-model="info.name">
+            </md-input-container>
+            <md-input-container flex>
+              <label>External Link URL</label>
+              <input ng-model="info.url">
+            </md-input-container>
+          </md-input-group>
+          <div class="md-caption md-accent" style="color: gray; margin-top: -28px; z-index: 100">
+            &rarr;
+            <a href="" style="color: white">Overview</a> |
+            <a href="" ng-click="advanced=!advanced" style="color: white; text-decoration: none;">Advanced</a> |
+            <a style="color: gray" disabled>Hardware</a> |
+            <a style="color: gray" disabled>Software</a> |
+            <a style="color: gray" disabled>Releases</a>
+          </div>
+          <md-input-group layout="column" ng-if="advanced">
+            <h3 layout="row" class="md-headline" flex-gt-xs>Advanced Options</h3>
+            <md-input-container layout="row" flex-gt-xs>
+              <label>Description</label>
+              <input ng-model="info.desc">
+            </md-input-container>
+            <md-input-container layout="row">
+              <md-switch ng-model="info.enabled">Enabled</md-switch>
+              <md-switch ng-model="info.featured">Featured</md-switch>
+            </md-input-container>
+          </md-input-group>
+        </div>
+      </md-content>
+      <md-content layout-padding>
+        <div>
+          ...
+        </div>
+      </md-content>
+    </div>
+
+  </div>
+</md-content>

@@ -31,8 +31,12 @@ angular.module('ngPlayApp')
     };
 
     $scope.select = function (item) {
-      console.info(' - Select:', item);
-      $state.go('app.info', item);
+      //console.info(' - Select:', item);
+      if (item.state){
+        $state.go(item.state, item);
+      } else {
+        $state.go('app.info', item);
+      }
     }
 
   });

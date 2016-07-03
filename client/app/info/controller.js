@@ -5,25 +5,40 @@
 angular.module('ngPlayApp.info', [
   'ui.router',
 ])
+
   .config(['$stateProvider', function ($stateProvider) {
-    $stateProvider.state('app.info', {
-      url: '/info',
-      views: {
-        'left@': {templateUrl: 'app/info/left.html'},
-        'main@': {
-          templateUrl: 'app/info/main.html',
-          controller: 'itemViewController'
+
+    $stateProvider
+      .state('app.new', {
+        url: '/new',
+        views: {
+          'left@': {templateUrl: 'app/info/left.html'},
+          'main@': {
+            templateUrl: 'app/info/new.html',
+            controller: 'itemViewController'
+          },
         },
-      },
-      params: {
-        url: null,
-        name: null,
-        desc: null,
-        active: false,
-        featured: false,
-      }
-    })
+      })
+      .state('app.info', {
+        url: '/info',
+        views: {
+          'left@': {templateUrl: 'app/info/left.html'},
+          'main@': {
+            templateUrl: 'app/info/main.html',
+            controller: 'itemViewController'
+          },
+        },
+        params: {
+          url: null,
+          name: null,
+          desc: null,
+          active: false,
+          featured: false,
+        }
+      })
+
   }])
+
   .controller('itemViewController', ['$rootScope', '$scope', '$state', function ($rootScope, $scope, $state) {
     $scope.runtime = {};
 

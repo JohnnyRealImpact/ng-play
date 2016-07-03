@@ -27,8 +27,8 @@
         <md-icon md-svg-icon="assets/icons/menu.svg"></md-icon>
       </md-button>
       <h2>
-          <a ui-sref="app.home">ng-play</a>
-        </h2>
+        <a ui-sref="app.home">Remote Control</a>
+      </h2>
       <span flex=""></span>
       <span hide show-gt-md>
         <md-button ui-sref="app.cmd" aria-label="CLI" class="md-icon-button">
@@ -43,7 +43,8 @@
         </md-button>
       </span>
       <md-menu>
-        <md-button aria-label="Open phone interactions menu" class="md-icon-button" ng-click="openMenu($mdOpenMenu, $event)">
+        <md-button aria-label="Open phone interactions menu" class="md-icon-button"
+                   ng-click="openMenu($mdOpenMenu, $event)">
           <md-icon md-menu-origin md-svg-icon="assets/icons/dots-vertical.svg"></md-icon>
         </md-button>
         <md-menu-content width="4">
