@@ -22,7 +22,15 @@ angular.module('ngPlayApp.runtime', [
           $http
             .get(config.api.things)
             .success(function (apiResult) {
-              _self.awesomeThings.concat(apiResult);
+              // Append results
+              if (apiResult && apiResult.length) {
+                apiResult.forEach(function(item){
+                  item.priority = item.priority || 1;
+                  _self.awesomeThings.push(item);
+                });
+              }
+
+              // Set the result
               resolve({
                 status: true,
                 result: apiResult
@@ -50,6 +58,7 @@ angular.module('ngPlayApp.runtime', [
         desc: 'Connecting to target machine "' + localUrl + '"...',
         active: false,
         featured: false,
+        priority: 0,
       };
       _self.awesomeThings.push(localTile);
 
@@ -70,6 +79,7 @@ angular.module('ngPlayApp.runtime', [
             localTile.name = newHost;
             localTile.url = newUrl;
             localTile.active = true;
+            //localTile.featured = true;
 
             config.title = newHost;
           }

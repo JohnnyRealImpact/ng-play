@@ -304,19 +304,3 @@ angular.module('ngPlayApp.cli', [
     angular.extend($scope.cmd, updates);
     */
   }])
-
-  .directive('cmdEnter', function () {
-    return function (scope, element, attrs) {
-      element.bind("keydown keypress", function (event) {
-        if (event.which === 13) {
-          try {
-            scope.$eval(attrs.cmdEnter);
-          } catch (ex) {
-            console.error('Command evaluation failed: ', attrs.cmdEnter);
-          }
-          event.preventDefault();
-          return false;
-        }
-      });
-    };
-  })

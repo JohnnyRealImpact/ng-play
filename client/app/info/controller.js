@@ -15,7 +15,7 @@ angular.module('ngPlayApp.info', [
           'left@': {templateUrl: 'app/info/left.html'},
           'main@': {
             templateUrl: 'app/info/new.html',
-            controller: 'itemViewController'
+            controller: 'itemNewController'
           },
         },
       })
@@ -39,6 +39,29 @@ angular.module('ngPlayApp.info', [
 
   }])
 
+  .controller('itemNewController', ['$rootScope', '$scope', '$state', '$http', function ($rootScope, $scope, $state, $http) {
+    $scope.info = {
+      name: null,
+      desc: null,
+      url: null,
+      active: true,
+      featured: false,
+    };
+
+    $scope.createLink = function (item) {
+      console.log(' - Create:', item);
+      $http
+        .post('/api/things', item)
+        .success(function(res){
+          console.log(' - Post Result:', res);
+          $state.go('app.info', item);
+        })
+        .catch(function(err){
+          console.error(err);
+        })
+    }
+  }])
+
   .controller('itemViewController', ['$rootScope', '$scope', '$state', function ($rootScope, $scope, $state) {
     $scope.runtime = {};
 
@@ -54,6 +77,3 @@ angular.module('ngPlayApp.info', [
 
   }])
 
-  .controller('ItemViewCtrl', function ($scope) {
-
-  })

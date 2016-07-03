@@ -42,11 +42,19 @@ angular.module('ngPlayApp.theme', [
       })
     //.dark();
   })
+
   .config(function ($mdThemingProvider) {
+
     // Configure a dark theme with primary foreground yellow
     $mdThemingProvider.theme('docs-dark', 'default')
       .primaryPalette('yellow')
       .dark();
+
+    // Configure a dark theme with primary foreground blue
+    $mdThemingProvider.theme('docs-new', 'default')
+      .primaryPalette('green')
+      .dark();
+
   });
 
 
