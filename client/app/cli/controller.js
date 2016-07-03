@@ -7,11 +7,11 @@ angular.module('ngPlayApp.cli', [
 ])
   .config(['$stateProvider', function ($stateProvider) {
     $stateProvider.state('app.cmd', {
-      url: '/cmd',
+      url: '/cli',
       views: {
         'left@': {templateUrl: 'components/sidenav/leftNav.html'},
         'main@': {
-          templateUrl: 'app/cmd/main.html',
+          templateUrl: 'app/cli/main.html',
           controller: 'systemCmdViewController'
         },
       }

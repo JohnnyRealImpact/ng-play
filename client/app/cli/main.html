@@ -1,4 +1,6 @@
-<md-content md-theme="docs-dark" layout-gt-sm="row" layout-padding flex style="width: 100%">
+<md-content layout-padding flex style="width: 100%"
+            layout-gt-sm="row"
+            md-theme="docs-dark">
   <form name="cmdForm" layout-fill layout-gt-sm="column" style="width: 100%;">
     <div layout-gt-sm="row">
       <md-input-container style="margin-bottom: 6px;" flex>
@@ -18,16 +20,16 @@
           <a href=""
              ng-click="item.expanded = !item.expanded"
              style="color: dark-gray; vertical-align: top; margin-right: 3px">
-            <i ng-if = "item.ended && item.error"
+            <i ng-if="item.ended && item.error"
                class="fa fa-exclamation-circle"
                style="color:red;"></i>
-            <i ng-if = "item.ended && !item.error && item.stderr"
+            <i ng-if="item.ended && !item.error && item.stderr"
                class="fa fa-exclamation-triangle"
                style="color:orange;"></i>
-            <i ng-if = "item.ended && !item.error && !item.stderr"
+            <i ng-if="item.ended && !item.error && !item.stderr"
                class="fa fa-check"
                style="color: limegreen;"></i>
-            <i ng-if = "!item.ended"
+            <i ng-if="!item.ended"
                class="fa fa-hourglass-o"
                style="color: darkgrey;"></i>
           </a>

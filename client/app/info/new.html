@@ -16,9 +16,9 @@
               <label>New Title</label>
               <input id="linkName"
                      required
-                     md-autofocus
+                     autofocus
                      ng-model="item.name"
-                     cmd-enter="newDirectLink.$valid && createLink(item)">
+                     cmd-enter="newDirectLink.$valid ? createLink(item) : newDirectLink.$setSubmitted() ">
             </md-input-container>
             <md-input-container flex>
               <label>External Link URL</label>
@@ -26,8 +26,7 @@
                      ng-model="item.url"
                      type="url"
                      required
-                     md-autofocus
-                     cmd-enter="newDirectLink.$valid && createLink(item)">
+                     cmd-enter="newDirectLink.$valid ? createLink(item) : newDirectLink.$setSubmitted()">
             </md-input-container>
           </md-input-group>
         </div>

@@ -27,13 +27,11 @@
         <md-icon md-svg-icon="assets/icons/menu.svg"></md-icon>
       </md-button>
       <h2>
-        <a ui-sref="app.home">Remote Control</a>
+        <a ui-sref="app.home">{{ pageInfo.title || 'Host Explorer' }}</a>
       </h2>
       <span flex=""></span>
       <span hide show-gt-md>
-        <md-button ui-sref="app.cmd" aria-label="CLI" class="md-icon-button">
-          <md-icon md-svg-icon="assets/icons/cli.svg"></md-icon>
-        </md-button>
+        <!-- Profile info goes here -->
       </span>
       <span>
         <md-button aria-label="Search" class="md-icon-button"
@@ -49,21 +47,9 @@
         </md-button>
         <md-menu-content width="4">
           <md-menu-item>
-            <md-button ng-click="showAddDialog($event)">
+            <md-button ui-sref="app.new">
               <md-icon md-svg-icon="content:add" md-menu-align-target></md-icon>
-              Add
-            </md-button>
-          </md-menu-item>
-          <md-menu-item>
-            <md-button ng-click="redial($event)">
-              <md-icon md-svg-icon="communication:dialpad" md-menu-align-target></md-icon>
-              Redial
-            </md-button>
-          </md-menu-item>
-          <md-menu-item>
-            <md-button disabled="disabled" ng-click="checkVoicemail()">
-              <md-icon md-svg-icon="communication:voicemail"></md-icon>
-              Check voicemail
+              Create New...
             </md-button>
           </md-menu-item>
           <md-menu-item>
@@ -73,8 +59,8 @@
             </md-button>
           </md-menu-item>
           <md-menu-item>
-            <md-button ng-click="toggleNotifications()">
-              <md-icon md-svg-icon="social:notifications{{notificationsEnabled ? '_off' : ''}}"></md-icon>
+            <md-button ui-sref="app.cmd" ng-disabled="false">
+              <md-icon md-svg-icon="action:feedback"></md-icon>
               Open Terminal
             </md-button>
           </md-menu-item>

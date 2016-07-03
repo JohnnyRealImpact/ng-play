@@ -24,7 +24,7 @@ angular.module('ngPlayApp.runtime', [
             .success(function (apiResult) {
               // Append results
               if (apiResult && apiResult.length) {
-                apiResult.forEach(function(item){
+                apiResult.forEach(function (item) {
                   item.priority = item.priority || 1;
                   _self.awesomeThings.push(item);
                 });
@@ -186,7 +186,7 @@ angular.module('ngPlayApp.runtime', [
   }])
 
   // Set the page configuration
-  .run(function($rootScope, appConfig){
+  .run(function ($rootScope, appConfig) {
     $rootScope.pageInfo = appConfig.page;
   })
 
@@ -233,16 +233,18 @@ angular.module('ngPlayApp.runtime', [
         console.groupEnd();
         return dockerInfo;
       })
-      .then(function(res){
-        appRuntime.awesomeThings.push(
-          {
-            icon: 'content:add',
-            name: 'Create New',
-            info: 'Define a new docker-machine environment.',
-            state: 'app.new',
-            active: false,
-          }
-        )
+      .then(function (res) {
+        if (appRuntime.awesomeThings.length <= 0) {
+          appRuntime.awesomeThings.push(
+            {
+              icon: 'content:add',
+              name: 'Create New',
+              info: 'Define a new docker-machine environment.',
+              state: 'app.new',
+              active: false,
+            }
+          )
+        }
         return res;
       })
       .finally(function () {
